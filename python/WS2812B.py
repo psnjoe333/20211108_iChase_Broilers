@@ -3,6 +3,7 @@
 from typing import Sequence
 import spidev
 import sys
+import time
 
 class SPItoWS():
     RGB_RED = [255,0,0]
@@ -94,10 +95,10 @@ class SPItoWS():
     
     def Show_Color(self, RGB):
         for i in range(self.led_count):
-            self.Set_Color(RGB)
+            self.Set_Color(i,RGB)
         self.LED_show()
 
-    def Turn_off_slowly(self, CurR, CurG, CurB, Step,delay_swith):
+    def Turn_off_slowly(self, CurR, CurG, CurB, Step=50,delay_swith=0.0001):
         if Step < 0: Step = Step
         d_R = int(CurR/Step)
         R_R = CurR - d_R*Step
@@ -128,7 +129,7 @@ class SPItoWS():
                 time.sleep(delay_swith)
             self.LED_show()
     
-    def Show_Slowly(self, FinR, FinG, FinB, Step,delay_swith):
+    def Show_Slowly(self, FinR, FinG, FinB, Step=50,delay_swith=0.0001):
         if Step < 0: Step = Step
         d_R = int(FinR/Step)
         R_R = FinR - d_R*Step

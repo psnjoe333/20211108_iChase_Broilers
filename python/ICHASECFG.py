@@ -1,6 +1,8 @@
 from csv import DictWriter
 import os
 from datetime import datetime
+import __main__
+
 
 def check_os_dir_exist(filepath):
     path_split = filepath.split('/')
@@ -74,7 +76,7 @@ def readinfo_2dict(file):
         return dic_temp  
 
 def version_check(info):
-    CurFileName = os.path.basename(__file__)
+    CurFileName = os.path.basename(__main__.__file__)
     CfgFileName = info['algorithm info']['main_filename']
     #print("CurFileName: ", CurFileName)
     if not CurFileName ==  CfgFileName:
